@@ -1,0 +1,92 @@
+﻿<div ng-app="myapp">
+    <div ng-controller="EmployeeCtrl">
+        <form novalidate name="frmEmployee" id="frmEmployee" class="form-horizontal row-border">
+            <br />
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17"> Employee Name</label>
+                    <div class="col-md-7">
+                        <input type="text"
+                               id="idEmployeeName"
+                               class="form-control"
+                               name="nameEmployeeName" ng-model="EmployeeName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input18"> Department</label>
+                    <div class="col-md-7">                        
+                        <select ng-model="selectedDepartment" ng-options="x.DeptName for x in Department"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input19"> Employee Salary</label>
+                    <div class="col-md-7">
+                        <input type="text" id="idSalary" class="form-control" name="Salary" ng-model="Salary" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-7">
+                        <span id="save" class="btn btn-success margin-right-btn" ng-click="SaveUpdate()">
+                            <i class="icon-save"></i> {{btnText}}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+            <table class="table table-hover general-table">
+                <thead class="grid-top-panel">
+                    <tr>
+                        <th style="display:none">EmpId</th>
+                        <th>Employee Name</th>                        
+                        <th style="display:none">DeptId</th>
+                        <th>Department</th>
+                        <th>Salary</th>                        
+                        <th style="text-align:center;">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in EmployeeList">
+                        <td style="display:none">{{row.EmpId}}</td>
+                        <td> {{row.EmpName}}</td>
+                        <td style="display:none">{{row.DeptId}}</td>
+                        <td> {{row.DeptName}}</td>
+                        <td>{{row.Salary}}</td>                        
+                        <td style="text-align:center; color:white">
+                            <span>
+                                <span id="save" class="btn btn-primary margin-right-btn" ng-click="EditEmployee(row)">
+                                    Edit
+                                </span>
+                                <span id="save" class="btn btn-danger margin-right-btn" ng-click="DeleteEmployee(row)">
+                                    Delete
+                                </span>
+                            </span>
+                        </td>
+                        @*<td style="text-align:right; color:white">
+                            <span>
+                                <span id="save" class="btn btn-danger margin-right-btn" ng-click="DeleteStudent(row)">
+                                    Delete
+                                </span>
+                            </span>
+                        </td>*@
+                    </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+
+            <br />
+            <br />
+        </form>
+    </div>
+
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/ScriptsNg/Module/app.js"></script>
+<script src="~/ScriptsNg/Controller/EmployeeCtrl.js"></script>
+<script src="~/ScriptsNg/Services/EmployeeService.js"></script>
